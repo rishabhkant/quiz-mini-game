@@ -6,8 +6,7 @@ const questionObj =
       answers: ['Two', 'Three', 'Four', 'Five'],
       question:
         "How many pieces of bun are in a Mcdonald's Big Mac?",
-    }
-    ;
+    };
 
 
 const {
@@ -23,9 +22,19 @@ const scoreEl = document.getElementById('score');
 questionEl.textContent = question;
 let score = 0;
 
+
+
+
+for(let i = answers.length -1; i >= 0 ; i--){
+  let randomNum = Math.floor(Math.random() * (i + 1));
+  let temp = answers[i];
+    answers[i] = answers[randomNum];
+    answers[randomNum] = temp;
+}
+
 answers.forEach((opt)=>{
   const btn = document.createElement("button");
-  btn.classList.add('optionButtons')
+  btn.classList.add('optionButtons');
   btn.textContent = opt;
   options.appendChild(btn);
 
