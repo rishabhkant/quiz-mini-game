@@ -62,11 +62,17 @@ const quesJSON = [
 ];
 
 
-const {
-  correctAnswer,
-  options,
-  question,
-} = quesJSON;
+// const {
+//   correctAnswer,
+//   options,
+//   question,
+// } = quesJSON;
+
+for(const el of quesJSON){
+  el.correctAnswer;
+  el.options;
+  el.question;
+}
 
 
 
@@ -103,11 +109,8 @@ options.forEach((opt)=>{
         score -= 0.25;
       }
 
-      scoreEl.textContent = `Score: ${score}`;
-      
-      
+      scoreEl.textContent = `Score: ${score}`;  
   })
-  
   
 })
 
