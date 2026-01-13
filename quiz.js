@@ -69,10 +69,12 @@ const quesJSON = [
 // } = quesJSON;
 
 for(const el of quesJSON){
-  el.correctAnswer;
-  el.options;
-  el.question;
+  console.log(el.correctAnswer);
+  console.log(el.options);
+  console.log(el.question);
 }
+
+
 
 
 
