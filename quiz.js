@@ -63,11 +63,15 @@ const quesJSON = [
 
 let score = 0;
 let currentQues = 0;
+const totalScore = quesJSON.length;
 
 const questionEl = document.getElementById('question');
 const optionsEl = document.getElementById('options');
 const scoreEl = document.getElementById('score');
 const nextBtn = document.getElementById('next');
+const subBtn = document.getElementById('submit');
+const btnCont = document.getElementById('btn');
+
 
 
 showQues();
@@ -90,40 +94,50 @@ for(let i = options.length - 1; i >= 0 ; i--){
     options[randomNum] = temp;
 }
 
-nextBtn.addEventListener('click', ()=>{
-  score += 0;
-  nextQues();
-})
-
 options.forEach((opt)=>{
   const btn = document.createElement("button");
   btn.textContent = opt;
   optionsEl.appendChild(btn);
 
   btn.addEventListener('click', ()=>{
+      btn.style.backgroundColor = "#f57424"
       if(opt === correctAnswer){
         score++;
       }else{
         score -= 0.25;
       }
 
-      scoreEl.textContent = `Score: ${score}`;  
-      nextQues()
+      // scoreEl.textContent = `Score: ${score} / ${totalScore}`;  
+      // nextQues();
   })
   
 })
 
 }
+
+nextBtn.addEventListener('click', ()=>{ 
+  scoreEl.textContent = `Score: ${score} / ${totalScore}`;
+  nextQues();
+});
+
+subBtn.addEventListener('click', ()=>{
+  scoreEl.textContent = `Score: ${score} / ${totalScore}`;
+  nextQues();
+})
+
+
 function nextQues(){
   currentQues++;
   optionsEl.textContent = '';
   if(currentQues >= quesJSON.length){
     questionEl.textContent = "Quiz completed";
+    btnCont.innerHTML = '';
     
   }else{
     showQues();
   }
 }
+
 
 // showQues();
 
