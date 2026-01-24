@@ -56,27 +56,9 @@ const quesJSON = [
       'Lewis Carroll',
       'Enid Blyton',
     ],
-    question:
-      "Which author wrote 'Mary Poppins'?",
-  },
+    question: "Which author wrote 'Mary Poppins'?",
+  }
 ];
-
-
-// const {
-//   correctAnswer,
-//   options,
-//   question,
-// } = quesJSON;
-
-for(const el of quesJSON){
-  console.log(el.correctAnswer);
-  console.log(el.options);
-  console.log(el.question);
-}
-
-
-
-
 
 
 let score = 0;
@@ -85,9 +67,20 @@ let currentQues = 0;
 const questionEl = document.getElementById('question');
 const optionsEl = document.getElementById('options');
 const scoreEl = document.getElementById('score');
+const nextBtn = document.getElementById('next');
 
+
+showQues();
 
 function showQues(){
+
+  const{
+    correctAnswer,
+    options,
+    question,
+  } = quesJSON[currentQues]
+
+
   questionEl.textContent = question;
 
 for(let i = options.length - 1; i >= 0 ; i--){
@@ -97,26 +90,40 @@ for(let i = options.length - 1; i >= 0 ; i--){
     options[randomNum] = temp;
 }
 
+nextBtn.addEventListener('click', ()=>{
+  score += 0;
+  nextQues();
+})
+
 options.forEach((opt)=>{
   const btn = document.createElement("button");
-  btn.classList.add('optionButtons');
   btn.textContent = opt;
   optionsEl.appendChild(btn);
 
   btn.addEventListener('click', ()=>{
       if(opt === correctAnswer){
         score++;
-
       }else{
         score -= 0.25;
       }
 
       scoreEl.textContent = `Score: ${score}`;  
+      nextQues()
   })
   
 })
 
 }
+function nextQues(){
+  currentQues++;
+  optionsEl.textContent = '';
+  if(currentQues >= quesJSON.length){
+    questionEl.textContent = "Quiz completed";
+    
+  }else{
+    showQues();
+  }
+}
 
-showQues();
+// showQues();
 
